@@ -524,10 +524,9 @@
       transform-origin: 31% 84%;
     }
 
-    .pat-hand-layer {
-      clip-path: polygon(0 0, 53% 0, 62% 17%, 61% 22%, 55% 26%, 47% 27%, 39% 25%, 25% 31%, 13% 29%, 0 20%);
-      transform-origin: 48% 24%;
-      animation: pat-hand-stroke 2.2s cubic-bezier(0.45, 0.05, 0.32, 1) infinite;
+    .motion-pat {
+      transform-origin: 47% 28%;
+      animation: zaizai-pat-sway 3.6s ease-in-out infinite;
     }
 
     @keyframes zaizai-breathe {
@@ -661,17 +660,19 @@
       }
     }
 
-    @keyframes pat-hand-stroke {
+    @keyframes zaizai-pat-sway {
       0%,
       100% {
-        transform: translate3d(-0.35px, -1.15px, 0) rotate(-0.18deg);
+        transform: translate3d(0, 0, 0) rotate(0deg);
       }
-      45%,
-      57% {
-        transform: translate3d(1.25px, 3.15px, 0) rotate(0.32deg);
+      25% {
+        transform: translate3d(0.7px, 0, 0) rotate(0.24deg);
       }
-      72% {
-        transform: translate3d(0.3px, 0.45px, 0) rotate(0.04deg);
+      50% {
+        transform: translate3d(-0.7px, 0, 0) rotate(-0.24deg);
+      }
+      75% {
+        transform: translate3d(0.35px, 0, 0) rotate(0.12deg);
       }
     }
 
@@ -1969,13 +1970,10 @@
       const petals = motion === "motion-flower"
         ? '<span class="motion-detail-layer petal-layer left" aria-hidden="true"><img src="' + safeSource + '" alt=""></span><span class="motion-detail-layer petal-layer right" aria-hidden="true"><img src="' + safeSource + '" alt=""></span>'
         : "";
-      const hand = motion === "motion-pat"
-        ? '<span class="motion-detail-layer pat-hand-layer" aria-hidden="true"><img src="' + safeSource + '" alt=""></span>'
-        : "";
       const gaitFrame = gaitMode
         ? '<img class="gait-frame-opposite" src="' + esc(ASSETS.walkGaitOpposite) + '" alt="" aria-hidden="true">'
         : "";
-      return '<span class="motion-figure ' + motionClasses + '"' + motionStyle + '><img' + baseClass + ' src="' + safeSource + '" alt="' + esc(alt) + '">' + gaitFrame + head + petals + hand + '</span>';
+      return '<span class="motion-figure ' + motionClasses + '"' + motionStyle + '><img' + baseClass + ' src="' + safeSource + '" alt="' + esc(alt) + '">' + gaitFrame + head + petals + '</span>';
     }
 
     function artCard(source, alt, classes, motion) {
